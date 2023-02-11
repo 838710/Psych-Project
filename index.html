@@ -6,30 +6,96 @@
     
     <body>
         <div class="nav">
-            <h3>test</h3>
+            <h3>Homepage</h3>
             <ul>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
-                <li><a>Infancy</a></li>
+                <li><a>Birth</a></li>
+                <li><a>0-2</a></li>
+                <li><a>2-5</a></li>
+                <li><a>5-10</a></li>
+                <li><a>11-13</a></li>
+                <li><a>14-15</a></li>
+                <li><a>15-16</a></li>
+                <li><a>Present</a></li>
             </ul>
         </div>
         <div id="content-bucket">
-            <h1>test</h1>
-            <p>test</p>
-            <p>test</p>
+            <h1>Excerpt</h1>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing 
+                elit, sed do eiusmod tempor incididunt ut labore et 
+                dolore magna aliqua. Ut enim ad minim veniam, quis 
+                nostrud exercitation ullamco laboris nisi ut aliquip 
+                ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore 
+                eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia 
+                deserunt mollit anim id est laborum."</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Jk4a254UW-QL7Hn9TP5J8ijHL9QmwgIAZ_dMHuB_X7fBCxRi1QghIkqT1uHYqbF6jaY:https://media.wired.com/photos/5b97f9a906b12508e73afb35/2:1/w_2222,h_1111,c_limit/boilingwater-91518809.jpg&usqp=CAU">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing 
+                elit, sed do eiusmod tempor incididunt ut labore et 
+                dolore magna aliqua. Ut enim ad minim veniam, quis 
+                nostrud exercitation ullamco laboris nisi ut aliquip 
+                ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore 
+                eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia 
+                deserunt mollit anim id est laborum."</p>
+
+            <h1>Piaget's commentary</h1>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing 
+                elit, sed do eiusmod tempor incididunt ut labore et 
+                dolore magna aliqua. Ut enim ad minim veniam, quis 
+                nostrud exercitation ullamco laboris nisi ut aliquip 
+                ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore 
+                eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia 
+                deserunt mollit anim id est laborum."</p>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnUgXe2wrtMVaR-RGvc_oJpyV5NCUnKHCY1MxoVe4z8Zf6QSCT4MwYaqs8hVxYZf5YW2A:https://www.shutterstock.com/image-photo/pan-hot-bubbling-boiling-oil-260nw-402441226.jpg&usqp=CAU">
         </div>
         <div id="TOC" class="nav">
-            <h3>test</h3>
+            <h3>Table of Contents</h3>
             <ul>
-                <li>Excerpt</li>
-                <li>Piaget's Commentary</li>
+                <li onclick="reand(0)">Excerpt</li>
+                <li onclick="reand(1)">Piaget's Commentary</li>
             </ul>
         </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            
+            window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 5 && Tpos[i].top * con > -15){
+                        for(let j = 0; j < check.length; j++){
+                            TOC[j].style.backgroundColor = "#fafaff";
+                            TOC[j].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                    }
+                    /*else{
+                        TOC[i].style.backgroundColor = "#fafaff";
+                        TOC[i].style.borderLeft = "solid 5px gray";
+                    }*/
+                }
+            }, 10);
+            function reand(num){
+                var Tpos = [];
+                Tpos[num] = check[num].getBoundingClientRect();
+                console.log(Tpos[num].top * con);
+                if(Tpos[num].top * con < 7){
+                    TOC[num].style.backgroundColor = "#cfe8fd";
+                    TOC[num].style.borderLeft = "5px solid #0067c2";
+                }
+                else{ //-15 < y < 5
+                    TOC[num].style.backgroundColor = "#fafaff";
+                    TOC[num].style.borderLeft = "solid 5px gray";
+                }
+                
+            }
+        </script>
     </body>
 </html>
