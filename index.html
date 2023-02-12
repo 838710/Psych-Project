@@ -69,7 +69,7 @@
             //recursive
             function updateTOC(num){
                 let Tpos = check[num].getBoundingClientRect().top;
-                if(Tpos * con < 5){
+                if(Tpos * con < 7){
                     if(num>0){
                         TOC[num-1].style.backgroundColor = "#fafaff";
                         TOC[num-1].style.borderLeft = "solid 5px gray";
@@ -91,7 +91,7 @@
                 var Tpos = [];
                 for(let i = 0; i < check.length; i++){
                     Tpos[i] = check[i].getBoundingClientRect();
-                    if(Tpos[i].top * con < 5){
+                    if(Tpos[i].top * con < 7){
                         if(i>0){
                             TOC[i-1].style.backgroundColor = "#fafaff";
                             TOC[i-1].style.borderLeft = "solid 5px gray";
