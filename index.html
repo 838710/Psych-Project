@@ -63,8 +63,24 @@
             var TOC = document.querySelectorAll("#TOC li");
             var check = document.querySelectorAll("h1");
             let con = (100.0/screen.height);
-            
             window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 5){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        TOC[i+1].style.backgroundColor = "#fafaff";
+                        TOC[i+1].style.borderLeft = "solid 5px gray";
+                    }
+                }
+            }, 10);
+
+            /*window.setInterval(function updateTOC(){
                 var Tpos = [];
                 for(let i = 0; i < check.length; i++){
                     Tpos[i] = check[i].getBoundingClientRect();
@@ -76,26 +92,8 @@
                         TOC[i].style.backgroundColor = "#cfe8fd";
                         TOC[i].style.borderLeft = "5px solid #0067c2";
                     }
-                    /*else{
-                        TOC[i].style.backgroundColor = "#fafaff";
-                        TOC[i].style.borderLeft = "solid 5px gray";
-                    }*/
                 }
-            }, 10);
-            function reand(num){
-                var Tpos = [];
-                Tpos[num] = check[num].getBoundingClientRect();
-                console.log(Tpos[num].top * con);
-                if(Tpos[num].top * con < 7){
-                    TOC[num].style.backgroundColor = "#cfe8fd";
-                    TOC[num].style.borderLeft = "5px solid #0067c2";
-                }
-                else{ //-15 < y < 5
-                    TOC[num].style.backgroundColor = "#fafaff";
-                    TOC[num].style.borderLeft = "solid 5px gray";
-                }
-                
-            }
+            }, 10);*/
         </script>
     </body>
 </html>
