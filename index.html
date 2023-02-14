@@ -80,8 +80,8 @@
                         TOC[num+1].style.backgroundColor = "#fafaff";
                         TOC[num+1].style.borderLeft = "solid 5px gray";
                     }
+                    if(num < TOC.length-1){updateTOC(num+1);}
                 }
-                if(num < TOC.length-1){updateTOC(num+1);}
             }
 
             window.setInterval(function (){updateTOC(0)}, 10);/**/
