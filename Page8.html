@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a href="Page2.html">Event 2</a></li>
+                    <li><a href="Page3.html">Event 3</a></li>
+                    <li><a href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a href="Page6.html">Event 6</a></li>
+                    <li><a href="Page7.html">Event 7</a></li>
+                    <li><a id="active" href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">
+                <h1>Excerpt</h1>
+                <h3>Age: 16+</h3>
+                <p>
+                    According to He et al., (2019), a higher humidity meant higher rates of particle agglomeration.<br>
+                    Higher particle agglomeration meant more particle agglomeration meant bigger particles.<br><br>
+                    According to Lowther et al., (2020), particles in the 200-300nm range were least effectively filtered.<br>
+                    According to Byrley et al., (2021), and Alberts et al., (2019), and Gu et al., (2019), and... 
+                    well, the point is, higher humidity means bigger particles in the 200-300nm range which means less 
+                    effective filtration.<br><br>
+
+                    Hypothesis: Higher humidity leads to less effective filtration of emissions from 3D printing.<br><br>
+
+                    So, assuming I had all the facts right, when I turned on this 3D printer in proximity to a dehumidifier, 
+                    the particles would be smaller than usual, be more effectively filtered, and therefore there would be more of them 
+                    captured on this filter I had here. Then, when I looked at it under Scanning Electron Microscopy, I would see more of them, 
+                    and they would be smaller.<br><br>
+
+                    Easy as pie. And it only took me 21 articles to figure it out.<br><br>
+
+                    Observation: I can't see anything under SEM.<br>
+                    And, my apparatus broke.<br>
+                    And, this new article says that I was wrong about this one thing from before I could've sworn was fact.<br>
+                    And, this shipment of whatever I need to fix my project got delayed.<br><br>
+
+                    Flash forward, and I've fixed those four issues?<br>
+                    Bad news is, I have five more.
+
+                    The Formal Operational Stage is where you're capable of trial and error? Please tell me there's a stage 
+                    above this where you're too smart for the "error" part, and then please tell me how to get there.
+                </p>
+                
+                <img src="Media/Event9.jpg">
+                <img src="Media/Event9.1.jpg">
+                <img src="Media/Event9.2.png">
+    
+                <h1>Piaget's Commentary</h1>
+                <p>
+                    In the Formal Operational Stage, one can use logic to form hypotheses, demonstrate higher order thinking, and 
+                    make use of trial and error. The act of conducting a research project is indicative of the ability to form a hypothesis; 
+                    the investigation of the hypothesis is indicative of an ability to make use of trial and error, as the issues 
+                    faced by the adolescent in the excerpt were solved via trial and error.<br>
+                    The use of metacognition at this stage is also apparent, given that said adolescent is analyzing his own thought process 
+                    by describing his development at this stage of life.
+                </p>
+                <img src="https://www.lcps.org/cms/lib/VA01000195/Centricity/Domain/18349/academies.png">
+                <div style="display: block; height: 3em"></div>
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Excerpt</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Piaget's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>

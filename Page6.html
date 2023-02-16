@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a href="Page2.html">Event 2</a></li>
+                    <li><a href="Page3.html">Event 3</a></li>
+                    <li><a href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a id="active" href="Page6.html">Event 6</a></li>
+                    <li><a href="Page7.html">Event 7</a></li>
+                    <li><a href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">
+                <h1>Excerpt</h1>
+                <h3>Age: 12</h3>
+                <p>
+                    Ever since I was five, I dreamed of being a programmer.<br><br>
+
+                    Now that I was actually doing it, it was... a lot less glamorous than I'd imagined.<br><br>
+
+                    It was satisfying to see things just work. To see that hours of debugging had 
+                    paid off, and that I had a finished product.<br>
+                    But looking at the finished product... it wasn't what I had wanted.<br>
+                    Originally I had gotten into programming because I'd wanted to make my own games. 
+                    And here I was, doing just that.<br><br>
+                    Making games.<br>
+                    With block code.<br>
+                    And terrible physics.<br>
+                    And terrible artwork.<br>
+                    And a decent gameplay loop, which had gotten old after I'd played through the game 
+                    for the millionth time trying to see if this minute change had fixed that one game 
+                    breaking bug.<br><br>
+
+                    It didn't feel as magical as I'd hoped. So I began to wonder... was this really for me? 
+                    Is this what I wanted to do with my life?<br>
+                    I'd better figure out soon. All my parents were telling me was to go out there and 
+                    get some extracurriculars so I could apply to the Academy of Science - and if I wanted to 
+                    get into Computer Science, I'd better make sure that my extracurriculars fit the bill.<br><br>
+
+                    But for now, one thing at a time. One bug at a time. For the millionth time.<br>
+                </p>
+                <img src="Media/Event6.JPG">
+                <img src="Media/Event6.1.JPG">
+                <h1>Erikson's Commentary</h1>
+                <p>
+                    In the stage of Identity vs. Role Confusion, adolescents determine their <b>identity</b> and sense of self. 
+                    In this example, the adolescent is determining his <b>identity</b>; both his <b>self-identity</b> and his <b>social identity</b>. 
+                    In determining where he wants to go in life, he is forging his own sense of self, which will make him more prone to 
+                    joining certain groups and thus shaping his <b>social identity</b>.<br>
+                    The excerpt showcases a minor identity crisis, as the adolescent is unsure of if this 
+                    is truly the identity he wants. However, for the most part, the adolescent has decided his <b>identity</b> and 
+                    is not prone to much role confusion.
+                </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpEhw0y0cYt_EF8K4s77YgEmMzpTbhJGYuF9CuDvSnAyshHKmZS0sxCKE1O8_1LswF83U:https://www.psychmechanics.com/wp-content/uploads/2022/05/identity-vs-role-confusion.jpg&usqp=CAU">
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Excerpt</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Erikson's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a href="Page2.html">Event 2</a></li>
+                    <li><a id="active" href="Page3.html">Event 3</a></li>
+                    <li><a href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a href="Page6.html">Event 6</a></li>
+                    <li><a href="Page7.html">Event 7</a></li>
+                    <li><a href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">                
+                <h1>Excerpt</h1>
+                <h3>Age: 3</h3>
+                <div style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                    <h3>BREAKING NEWS!</h3>
+                    <h4>Toddler Suffers Serious Injury!</h4>
+                    <p>This just in from the Jiang household: David Jiang has tripped and skinned his knee!<br><br>
+
+                        It was a beautiful spring day: perfect for playing outside. But this 
+                        serene scene was forever ruined when David tripped and skinned his knee. 
+                        Experts have reached the consensus that a combination of him wearing shorts 
+                        and tripping while running on asphalt is to blame for the extent of the wound. 
+                        Testimony from on-site paramedic "Mom" has revealed that the skin on his 
+                        right knee has been almost completely rubbed off, and that the area is 
+                        bleeding profusely.<br><br>
+
+                        One of our correspondents reached out to David for comment on the matter. He had this to say:<br><br>
+
+                        "My elbow-leg!"<br><br>
+
+                        David then went back to crying, and no further comments were issued.
+                    </p>
+                </div>
+                <img src="Media/Event3.jpeg">
+
+                <h1>Piaget's Commentary</h1>
+                <p>
+                    In the preoperational stage, children begin to use language to express their <b>schemas</b>. 
+                    As evidenced by him not knowing the word "knee," this child is still in the preoperational 
+                    stage, as he does not have complete mastery of the English language.<br>
+                    What he did say is evidence of <b>assimilation</b>. Not knowing the word for "knee," he drew from 
+                    his existing <b>schema</b> of human anatomy, describing his knee as his leg's elbow.
+                </p>
+                <img src="https://www.verywellmind.com/thmb/CC66yQ8y5l-PUmyA5pY0etAZDWQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-assimilation-2794821-5b61db5ec9e77c005088869f.png">
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Excerpt</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Piaget's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>

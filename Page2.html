@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a id="active" href="Page2.html">Event 2</a></li>
+                    <li><a href="Page3.html">Event 3</a></li>
+                    <li><a href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a href="Page6.html">Event 6</a></li>
+                    <li><a href="Page7.html">Event 7</a></li>
+                    <li><a href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">
+                <h1>Excerpt</h1>
+                <h3>Age: 2</h3>
+                <div style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                    <h3>BREAKING NEWS!</h3>
+                    <h4>Toddler Learns You Can Say No!</h4>
+                    <p>This just in from the Jiang household: in a shocking turn of 
+                        events, David Jiang has learned that not forgiving people is 
+                        an option!<br><br>
+
+                        The Jiang siblings have always been quick to forgive each other. However, 
+                        when David asked his sister to forgive him for messing up one of her toys, 
+                        she is quoted as saying: <br><br>
+                        "No!"<br><br>
+                        We interviewed David after the incident. Unfortunately, he was too preoccupied 
+                        with sobbing to respond to comment.<br>
+                        A spokesperson reached out to us afterwards for comment, and is quoted as saying:<br><br>
+
+                        "This is the first time that he's heard 'no' used as a response to a request for 
+                        forgiveness. It's like his worldview is shattered; he doesn't know what to believe 
+                        anymore. Who knew that was an option? If you can choose to not forgive someone, then 
+                        what other things can you say 'no' to? He's taking some time to reflect and internalize 
+                        this revelation - it might take up to five minutes for him to move on from this."<br><br>
+
+                        The rest of the Jiang family declined to comment.
+                    </p>
+                </div>
+                <img src="Media/Event2.1.JPG">
+                <img src="Media/Event2.JPG">
+    
+                <h1>Erikson's Commentary</h1>
+                <p>
+                    In the Trust vs. Mistrust stage, a child develops a sense of <b>basic trust</b> 
+                    in response to being properly cared for. <br>
+                    Once one develops <b>basic trust</b>, they come to believe that the world is trustworthy. 
+                    However, in this instance, the child's <b>basic trust</b> was challenged, as something he 
+                    previously took as fact - you always have to forgive someone if they ask - was revealed 
+                    not to be as strictly binding as he previously believed. While not indicative of a lack 
+                    of love in their relationship, transgressing on the child's trust could be seen as improper 
+                    care of the child's emotional needs.
+                </p>
+                <img src="https://i2.wp.com/www.roberthartzell.com/wp-content/uploads/2015/09/fatherhood.jpg?ssl=1">
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Excerpt</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Erikson's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a href="Page2.html">Event 2</a></li>
+                    <li><a href="Page3.html">Event 3</a></li>
+                    <li><a id="active" href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a href="Page6.html">Event 6</a></li>
+                    <li><a href="Page7.html">Event 7</a></li>
+                    <li><a href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">
+                <h1>Interview</h1>
+                <h3>Age: 4</h3>
+                (Interview with Mom)
+                <ul style="line-height: 2em;">
+                    <li style="list-style-type: 'D:     ';">
+                    Sharing is good, right?</li>
+                    <li style="list-style-type: 'M:     ';">
+                    Oh, not this again.</li>
+                    <li style="list-style-type: 'D:     ';">
+                    Explain your memory of that phrase.</li>
+                    <li style="list-style-type: 'M:     ';">
+                    See, I was eating Kit-Kat your brother brought home from school. 
+                    And I had it <i>all to myself</i>. Until you came in.</li>
+                    <li style="list-style-type: 'D:     ';">
+                    Go on.</li>
+                    <li style="list-style-type: 'M:     ';">
+                    So, you probably heard me unwrapping it, and you wanted some, naturally. 
+                    So you came up to me, and you asked me "Mommy, sharing is good, right?" 
+                    I wanted to set a good example, so I told you "Yes, sharing is good." 
+                    Because why would I say otherwise? Then you asked me, "Will you share with me?" 
+                    And of course, because I just told you sharing was good, I couldn't say no. 
+                    You made me dig my own hole!</li>
+                    <li style="list-style-type: 'D:     ';">
+                    For the record, can you say what happened after?</li>
+                    <li style="list-style-type: 'M:     ';">
+                    Once you took a bite, I asked you "David, sharing is good, right?" And 
+                    you just hugged the Kit-Kat close to you and wouldn't let me take it back. 
+                    Before I knew it, you had eaten the whole thing.</li>
+                    <li style="list-style-type: 'D:     ';">
+                    Do you think I was a bad kid? Would you say I had morals? Did I know what I was 
+                    doing was wrong?</li>
+                    <li style="list-style-type: 'M:     ';">
+                    You obviously knew right and wrong. But you obviously didn't care about right and wrong. 
+                    Only about the chocolate. [In Chinese:] <i>Naughty little boy.</i></li>    
+                </ul>
+                <img src="Media/Event4.JPG">
+                <h1>Kohlberg's Commentary</h1>
+                <p>
+                    Children typically operate by preconventional morality, and this child is no different. 
+                    It is evident that this child was operating in the Personal Reward stage, as he had no 
+                    regard for right or wrong, despite knowing the difference between them. Rather, he made 
+                    his decision based on personal gain - in this case, the chocolate. After obtaining the 
+                    reward, he once more disregarded right and wrong in favor of keeping his prize.
+                </p>
+                <img src="Media/Event4.1.jpeg">
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Interview</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Kohlberg's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>

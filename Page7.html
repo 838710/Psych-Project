@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href = "styles.css">
+        <link rel="stylesheet" href = "https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    
+    <body>
+        <div id="head">UI inspired by MDN Web Docs: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></div>
+        <div class = "Container">
+            <div class="nav" id="side">
+                <a style = "margin-left: 0; height: 6vw;" class = "Container" href="index.html">
+                    <img style="height: 6vw; justify-content: center; padding: 0;" src="Media/lcps.png">
+                    <h3 style="margin-top: 0; padding-top: 2.25vw; padding-bottom: 2.25vw; font-size: 1.5vw; height: 1.5vw;">Homepage</h3>
+                </a>
+                <ul>
+                    <li><a href="Page1.html">Event 1</a></li>
+                    <li><a href="Page2.html">Event 2</a></li>
+                    <li><a href="Page3.html">Event 3</a></li>
+                    <li><a href="Page4.html">Event 4</a></li>
+                    <li><a href="Page5.html">Event 5</a></li>
+                    <li><a href="Page6.html">Event 6</a></li>
+                    <li><a id="active" href="Page7.html">Event 7</a></li>
+                    <li><a href="Page8.html">Event 8</a></li>
+                </ul>
+            </div>
+            <div id="content-bucket">
+                <h1>Excerpt</h1>
+                <h3>Age: 14</h3>
+                From: Brother's Perspective
+                <p>
+                    "Oh come on, just get in there."<br><br>
+
+                    I was getting impatient. I'd dragged him all this way, just for him to get cold feet now? 
+                    This kid.<br><br>
+
+                    "Hey, it says that only 16 and older are allowed in here." David pointed to the sign on the gym door, 
+                    finger tracing the bold letters.<br><br>
+
+                    "You need the exercise." I gestured in return to his stick-thin body, barely thicker than the bold font on the 
+                    gym door. "Besides, they won't be able to tell. You're close enough, just come on. What's the worst that could 
+                    happen?"<br><br>
+
+                    He looked around frantically, as if looking for <i>another</i> excuse to stay behind. But eventually, he followed 
+                    me in.<br><br>
+
+                    I greeted the clerk at the desk and told him our ages. 20 and 16. Soon enough, we were in the gym. I eyed the 
+                    punching bags with glee.<br><br>
+
+                    "Alright, start warming up. Then, we work the bag."<br><br>
+
+                    I began shadow boxing in anticipation. But as I turned my head, I saw that my brother was nowhere to be seen. Where was he?<br>
+                    Before long, I got my answer. There he was, over to me... with an employee in tow. He informed me that they'd double checked our hotel records. 
+                    David wasn't allowed in the gym.<br><br>
+
+                    Oh well, his loss. He could sit in our room alone while I had all the fun.
+                </p>
+                <img src="Media/Event7.JPG">
+    
+                <h1>Kohlberg's Commentary</h1>
+                <p>
+                    Teens typically operate by conventional morality, where the focus is placed on societal rules. 
+                    In this case, the adolescent was in the Law and Order stage, where decisions are made based on 
+                    whether or not they are legal. The adolescent neglected his own physical care and an opportunity 
+                    to have fun, prioritizing the law instead.
+                </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN48or_Ztb1A09HKNDgAx7X0721uDii5879G5z5PfgaTd5KoA9NUeXF7huoQqEEQ4i054:www.loc.gov/static/research-centers/law-library-of-congress/images/lady-justice.png&usqp=CAU">
+            </div>
+            <div id="TOC" class="nav">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li onclick="check[0].scrollIntoView({behavior: 'smooth'});">Excerpt</li>
+                    <li onclick="check[1].scrollIntoView({behavior: 'smooth'});">Kohlberg's Commentary</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var TOC = document.querySelectorAll("#TOC li");
+            var check = document.querySelectorAll("h1");
+            let con = (100.0/screen.height);
+            function Excerpt(){
+                
+            }
+            function Commentary(){
+                
+            }
+            //recursive
+            function updateTOC(num){
+                let Tpos = check[num].getBoundingClientRect().top;
+                if(Tpos * con < 7){
+                    if(num>0){
+                        TOC[num-1].style.backgroundColor = "#fafaff";
+                        TOC[num-1].style.borderLeft = "solid 5px gray";
+                    }
+                        TOC[num].style.backgroundColor = "#cfe8fd";
+                        TOC[num].style.borderLeft = "5px solid #0067c2";
+                    if(num < TOC.length-1){
+                        TOC[num+1].style.backgroundColor = "#fafaff";
+                        TOC[num+1].style.borderLeft = "solid 5px gray";
+                    }
+                    if(num < TOC.length-1){updateTOC(num+1);}
+                }
+            }
+
+            window.setInterval(function (){updateTOC(0)}, 10);/**/
+            
+            //iterative
+            /*window.setInterval(function updateTOC(){
+                var Tpos = [];
+                for(let i = 0; i < check.length; i++){
+                    Tpos[i] = check[i].getBoundingClientRect();
+                    if(Tpos[i].top * con < 7){
+                        if(i>0){
+                            TOC[i-1].style.backgroundColor = "#fafaff";
+                            TOC[i-1].style.borderLeft = "solid 5px gray";
+                        }
+                        TOC[i].style.backgroundColor = "#cfe8fd";
+                        TOC[i].style.borderLeft = "5px solid #0067c2";
+                        if(i < TOC.length-1){
+                            TOC[i+1].style.backgroundColor = "#fafaff";
+                            TOC[i+1].style.borderLeft = "solid 5px gray";
+                        }
+                    }
+                }
+            }, 10);*/
+        </script>
+    </body>
+</html>
